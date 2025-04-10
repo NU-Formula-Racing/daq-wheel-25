@@ -1,109 +1,38 @@
 #include <Arduino.h>
-//For first drive:
-  //IO 27 for sus pots (jumpered to ADC pin)
-  //IO22 for wheel speed (digital signal, no ADC needed)
+#include "define.h"
+#include "wheelSpeed.h"
 
-// Sus-pot Constants
-const int potPin = 27;
-const float pot_const = 3.3/4095;
-const float slope = 1380;
-
-// Wheel Speed Setup
-  // Constants
-const int wheel_speed_pin = 22;               // Pin connected to the sensor output
-const int teethPerRevolution = 70;      // Number of teeth per revolution
-const int sampleInterval = 100;         // Sampling interval in milliseconds
-const int bufferSize = 10;              // Number of intervals for moving average
-  // Variables
-volatile unsigned int tickCount = 0;         // Counts pulses from the sensor in the current interval
-unsigned int tickBuffer[bufferSize] = {0};     // Circular buffer for storing tick counts
-unsigned int bufferIndex = 0;                // Current index in the buffer
-unsigned long lastSampleTime = 0;            // Time of last sample
-float movingAverageRPM = 0;                  // Calculated moving average RPM
-
-
-// Interrupt Service Routine for counting ticks (each falling edge corresponds to one pulse)
-void countTick() {
-  tickCount++;
-}
-
-// Function to calculate moving average RPM from the tick buffer
-float calculateMovingAverageRPM() {
-  unsigned long totalTicks = 0;
-  // Sum up tick counts from every sample interval in the buffer.
-  for (int i = 0; i < bufferSize; i++) {
-    totalTicks += tickBuffer[i];
-  }
-  // Calculate average ticks per interval (even if some intervals recorded zero ticks)
-  float avgTicksPerSample = totalTicks / (float)bufferSize;
-  
-  // Convert to ticks per second
-  float ticksPerSecond = avgTicksPerSample * (1000.0 / sampleInterval);
-  
-  // Calculate RPM (ticks per second divided by teeth per revolution gives RPS; multiplied by 60 for RPM)
-  return (ticksPerSecond / teethPerRevolution) * 60.0;
-}
+// Create an instance of WheelSpeed.
+WheelSpeed wheelSpeed;
 
 void setup() {
     Serial.begin(115200);
-    pinMode(potPin, INPUT);
-    pinMode(wheel_speed_pin, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(wheel_speed_pin), countTick, FALLING);
-    lastSampleTime = millis();
+    // Configure the potentiometer pin.
+    pinMode(POT_PIN, INPUT);
 }
 
 void loop() {
-  // Read the analog value from the potentiometer (0 to 1023)
-  float potValue = analogRead(potPin);
-  float voltage = pot_const * potValue;
-  float distance = potValue/slope;
-  // Print the potentiometer value to the Serial Monitor
-  Serial.print("Potentiometer Value: ");
-  Serial.println(potValue);
-  Serial.print("Voltage: ");
-  Serial.println(voltage);
-  Serial.print("Distance:");
-  Serial.println(distance);
-  delay(100);
-
-  unsigned long currentTime = millis();
-  
-    // Check if it's time to sample the current tick count
-    if (currentTime - lastSampleTime >= sampleInterval) {
-      // Safely copy and reset the tick counter
-      noInterrupts();
-      tickBuffer[bufferIndex] = tickCount;
-      tickCount = 0;
-      interrupts();
-      
-      // Move to the next buffer index, wrapping around if necessary
-      bufferIndex = (bufferIndex + 1) % bufferSize;
-      lastSampleTime = currentTime;
-      
-      // Compute the moving average RPM and print it over Serial
-      movingAverageRPM = calculateMovingAverageRPM();
-      Serial.print("Moving Average RPM: ");
-      Serial.println(movingAverageRPM);
-    }
-    // // Read the sensor value.
-    // // LOW indicates that metal is detected.
-    // bool metalDetected = (digitalRead(sensorPin) == LOW);
+    // Read the potentiometer value.
+    int potValue = analogRead(POT_PIN);
+    float voltage = POT_CONST * potValue;
+    float distance = potValue / SLOPE;
     
-    // if (metalDetected) {
-    //   Serial.println("Metal detected");
-    // } else {
-    //   Serial.println("No metal detected");
-    // }
+    Serial.print("Potentiometer Value: ");
+    Serial.println(potValue);
+    Serial.print("Voltage: ");
+    Serial.println(voltage);
+    Serial.print("Distance: ");
+    Serial.println(distance);
     
-    // // Delay to reduce serial output rate.
-    // delay(100);
+    // Update the wheel speed calculations.
+    wheelSpeed.update();
+    float currentRpm = wheelSpeed.getMovingAverageRpm();
+    Serial.print("Moving Average RPM: ");
+    Serial.println(currentRpm);
+    
+    // Short delay to allow the Serial Monitor to update at a readable rate.
+    delay(100);
 }
-
-
-
-
-
-
 
 
 
