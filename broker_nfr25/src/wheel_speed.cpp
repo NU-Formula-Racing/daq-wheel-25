@@ -1,6 +1,6 @@
 #include "wheel_speed.h"
 
-WheelSpeed::WheelSpeed(uint8_t pin, uint16_t teethPerRevolution, uint32_t sampleIntervalMS) : _pin(pin), _tickCount(0), _bufferIndex(0), _lastSampleTime(0), _movingAverageRpm(0), _teethPerRevolution(teethPerRevolution), _sampleIntervalMS(sampleIntervalMS) {
+WheelSpeed::WheelSpeed(HWPin pin, uint16_t teethPerRevolution, uint32_t sampleIntervalMS) : _pin(pin), _tickCount(0), _bufferIndex(0), _lastSampleTime(0), _movingAverageRpm(0), _teethPerRevolution(teethPerRevolution), _sampleIntervalMS(sampleIntervalMS) {
     for (int i = 0; i < BUFFER_SIZE; i++) {
         _tickBuffer[i] = 0;
     }

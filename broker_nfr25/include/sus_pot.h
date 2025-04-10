@@ -1,5 +1,11 @@
 #ifndef __SUS_POT_H__
 #define __SUS_POT_H__
 
+#include "define.h"
 
-#endif // __SUS_POT_H__
+class SusPot {
+   public:
+   SusPot(HWPin analogPin);
+};
+
+#endif  // __SUS_POT_H__
