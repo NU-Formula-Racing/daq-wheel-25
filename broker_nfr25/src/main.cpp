@@ -2,6 +2,7 @@
 
 #include "define.h"
 #include "wheel_speed.h"
+#include "sus_pot.h"
 
 // Create an instance of WheelSpeed.
 WheelSpeed wheelSpeed {
@@ -9,6 +10,14 @@ WheelSpeed wheelSpeed {
         TEETH_PER_REVOLUTION,
         SAMPLE_INTERVAL
 };
+
+SusPot susPot {
+    HWPin::POT_PIN,
+        10000,
+        SUS_LUT
+};
+
+
 
 void setup() {
     Serial.begin(115200);
