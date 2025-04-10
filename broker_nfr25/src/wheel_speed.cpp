@@ -1,8 +1,12 @@
 #include "wheel_speed.h"
 
-WheelSpeed::WheelSpeed(HWPin pin, uint16_t teethPerRevolution, uint32_t sampleIntervalMS) : _pin(pin), _tickCount(0), _bufferIndex(0), _lastSampleTime(0), _movingAverageRpm(0), _teethPerRevolution(teethPerRevolution), _sampleIntervalMS(sampleIntervalMS) {
+WheelSpeed::WheelSpeed(HWPin pin, uint16_t teethPerRevolution, uint32_t sampleIntervalMS) : _pin(pin), _tickCount(0), _bufferIndex(0), _lastSampleTime(0), _cachedMovingAverageRPM(0), _teethPerRevolution(teethPerRevolution), _sampleIntervalMS(sampleIntervalMS) {
     for (int i = 0; i < BUFFER_SIZE; i++) {
-        _tickBuffer[i] = 0;
+        _tickBuffer[i] = (__WheelTickInfo){
+            .tickTime = 0,
+            .sampleInterval = 0,
+            .tickValue = 0,
+            .valid = false};
     }
 }
 
@@ -15,29 +19,55 @@ void WheelSpeed::initalize() {
         FALLING);
 }
 
-float WheelSpeed::getRPM() {
-    // unsigned long currentTime = millis();
-    // if (currentTime - _lastSampleTime >= SAMPLE_INTERVAL) {
-    //     noInterrupts();
-    //     _tickBuffer[_bufferIndex] = _tickCount;
-    //     _tickCount = 0;
-
-    //     _bufferIndex = (_bufferIndex + 1) % BUFFER_SIZE;
-    //     _lastSampleTime = currentTime;
-
-    //     interrupts();
-
-    //     _movingAverageRpm = calculateMovingAverageRpm();
-    // }
+void WheelSpeed::update() {
+    getRPM();  // perform the logic to update the buffers
 }
 
-float WheelSpeed::calculateMovingAverageRPM() {
-    unsigned long totalTicks = 0;
+float WheelSpeed::getRPM() {
+    uint64_t currentTime = millis();
+    // has enough time passed where we can sample the sensor?
+    // if not, return our cached value
+    if (currentTime - _lastSampleTime <= _sampleIntervalMS)
+        return _cachedMovingAverageRPM;
+
+    // store this in the buffer
+    noInterrupts();
+    _tickBuffer[_bufferIndex] = (__WheelTickInfo){
+        .tickTime = currentTime,
+        .sampleInterval = currentTime - _lastSampleTime,
+        .tickValue = _tickCount,
+        .valid = true};
+    _lastSampleTime = currentTime;
+    _tickCount = 0;
+    _bufferIndex = (_bufferIndex + 1) % BUFFER_SIZE;
+    interrupts();
+
+    _cachedMovingAverageRPM = calcualtedWeightedMovingAverageRPM();
+    return _cachedMovingAverageRPM;
+}
+
+float WheelSpeed::calcualtedWeightedMovingAverageRPM() {
+    float totalWeightedTicksPerMS = 0;
+    float totalWeight = 0;
+    uint64_t currentTime = millis();
+
     for (int i = 0; i < BUFFER_SIZE; i++) {
-        totalTicks += _tickBuffer[i];
+        __WheelTickInfo info = _tickBuffer[i];
+        if (info.valid == false) continue;  // this value is garbage
+        float ticksPerMS = (float)info.tickValue / (float)info.sampleInterval;
+
+        // now calculate a weight
+        uint64_t timeSince = currentTime - info.tickTime;
+        float weight = 1 / (float)timeSince;
+
+        totalWeight += weight;
+        totalWeightedTicksPerMS += weight * ticksPerMS;
     }
-    float avgTicksPerSample = totalTicks / (float)BUFFER_SIZE;
-    float ticksPerSecond = avgTicksPerSample * (1000.0 / SAMPLE_INTERVAL);
+
+    float weightedAverageTicksPerMS = totalWeightedTicksPerMS / totalWeight;
+
+    // convert ticks/ms -> ticks/sec -> rot/min
+    float ticksPerSecond = weightedAverageTicksPerMS * (1000.0 / SAMPLE_INTERVAL);
     return (ticksPerSecond / TEETH_PER_REVOLUTION) * 60.0;
 }
 

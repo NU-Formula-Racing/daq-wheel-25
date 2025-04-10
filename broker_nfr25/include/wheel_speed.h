@@ -5,6 +5,13 @@
 
 #include "define.h"
 
+struct __WheelTickInfo {
+    uint64_t tickTime; // the last time that the entry was updated
+    uint64_t sampleInterval; // the amount of time in ms that this tick info covers
+    uint32_t tickValue; // the value
+    bool valid; // does this actually mean something?
+};
+
 /// @brief An abstration over any type of hall-effect based wheel speed sensor
 class WheelSpeed {
    public:
@@ -17,6 +24,10 @@ class WheelSpeed {
     /// @brief Initializes the sensor, by setting up the pin mode and attaching an interrupt
     void initalize();
 
+    /// @brief Updates the reading of the sensor. Technically you don't have to call this,
+    /// but doing so will make your measurement more accurate
+    void update();
+
     /// @brief Gets the current RPM of the wheel
     /// @return The RPM of the wheel
     float getRPM();
@@ -28,19 +39,20 @@ class WheelSpeed {
 
     /// @brief Internal function for calculating a moving average for the speed
     /// @return The moving average
-    float calculateMovingAverageRPM();
+    float calcualtedWeightedMovingAverageRPM();
     
     // HW Varaibles
     HWPin _pin;
 
     // Bookkeeping variables
     volatile uint32_t _tickCount;
-    uint32_t _tickBuffer[BUFFER_SIZE];
+    __WheelTickInfo _tickBuffer[BUFFER_SIZE];
+
     uint32_t _bufferIndex;
-    uint32_t _lastSampleTime;
+    uint64_t _lastSampleTime;
     uint16_t _teethPerRevolution;
     uint32_t _sampleIntervalMS;
-    float _movingAverageRpm;
+    float _cachedMovingAverageRPM;
 
 };
 

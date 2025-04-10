@@ -5,7 +5,7 @@
 
 class SusPot {
    public:
-   SusPot(HWPin analogPin);
+    SusPot(HWPin analogPin, float r2);
 };
 
 #endif  // __SUS_POT_H__
