@@ -20,7 +20,9 @@ class CANTX {
 
     void initialize() {
         driveBus.Initialize(ICAN::BaudRate::kBaud500K);
-        timerGroup.AddTimer(100, [this]() { flWheel.EncodeAndSend(); });
+        timerGroup.AddTimer(100, [this]() { 
+            Serial.println("Sending message!");
+            flWheel.EncodeAndSend(); });
     }
 
     void tick() {
