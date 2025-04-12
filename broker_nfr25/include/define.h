@@ -7,7 +7,13 @@
 
 enum HWPin : uint8_t {
     WHEEL_SPEED_PIN = GPIO_NUM_22,
-    POT_PIN = GPIO_NUM_27
+    POT_PIN = GPIO_NUM_27,
+    POWER_LED = GPIO_NUM_25,
+    TEMP_POWER_LED = GPIO_NUM_26,
+    FB_SETTING = GPIO_NUM_34,
+    FB_INDICATOR = GPIO_NUM_35,
+    LR_SETTING = GPIO_NUM_32,
+    LR_INDICATOR = GPIO_NUM_33
 };
 
 // Potentiometer Constants

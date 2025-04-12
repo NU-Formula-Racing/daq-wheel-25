@@ -20,11 +20,12 @@ WheelSpeed wheelSpeed{
 
 void setup() {
     Serial.begin(115200);
-    // Configure the potentiometer pin.
+    // turn on the power indicator
+    pinMode(HWPin::POWER_LED, OUTPUT);
+    digitalWrite(HWPin::POWER_LED, HIGH);
 
     wheelSpeed.initalize();
     // susPot.initialize();
-
     can.initialize();
 }
 
