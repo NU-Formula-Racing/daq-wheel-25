@@ -13,13 +13,14 @@ class CANTX {
     MakeSignedCANSignal(float, 16, 16, 1.0, 0.0) displacementSignal;
     MakeSignedCANSignal(float, 32, 16, 1.0, 0.0) loadSignal;
 
-    CANTXMessage<3> flWheel{driveBus, 0x249, 6, 100, timerGroup, wheelSpeedSignal, displacementSignal, loadSignal};
+    CANTXMessage<3> flWheel{driveBus, 0x249, false, 6, 100, wheelSpeedSignal, displacementSignal, loadSignal};
     // CANTXMessage<3> frWheel{driveBus, 0x24A, 6, 0, wheelSpeedSignal, displacementSignal, loadSignal};
     // CANTXMessage<3> blWheel{driveBus, 0x24B, 6, 0, wheelSpeedSignal, displacementSignal, loadSignal};
     // CANTXMessage<3> brWheel{driveBus, 0x24C, 6, 0, wheelSpeedSignal, displacementSignal, loadSignal};
 
     void initialize() {
         driveBus.Initialize(ICAN::BaudRate::kBaud500K);
+        timerGroup.AddTimer(100, [this]() { flWheel.EncodeAndSend(); });
     }
 
     void tick() {
