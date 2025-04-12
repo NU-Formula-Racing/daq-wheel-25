@@ -31,10 +31,8 @@ void setup() {
 void loop() {
     // float currentDisplacement = susPot.getDisplacement();
     // can.displacementSignal = currentDisplacement;
-
     // Update the wheel speed calculations.;
     float currentRpm = wheelSpeed.getRPM();
     can.wheelSpeedSignal = currentRpm;
-
     can.tick();
 }

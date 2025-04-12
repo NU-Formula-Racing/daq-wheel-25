@@ -22,11 +22,14 @@ class CANTX {
         driveBus.Initialize(ICAN::BaudRate::kBaud500K);
         timerGroup.AddTimer(100, [this]() { 
             Serial.println("Sending message!");
-            flWheel.EncodeAndSend(); });
+            flWheel.EncodeAndSend(); 
+        });
     }
 
     void tick() {
         driveBus.Tick();
+        Serial.println("Ticking CAN!");
+        flWheel.EncodeAndSend();
         timerGroup.Tick(millis());
     }
 };
