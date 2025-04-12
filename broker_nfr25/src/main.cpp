@@ -1,50 +1,40 @@
 #include <Arduino.h>
 
+#include "can_tx.h"
 #include "define.h"
-#include "wheel_speed.h"
 #include "sus_pot.h"
+#include "wheel_speed.h"
+
+CANTX can;
 
 // Create an instance of WheelSpeed.
-WheelSpeed wheelSpeed {
+WheelSpeed wheelSpeed{
     HWPin::WHEEL_SPEED_PIN,
-        TEETH_PER_REVOLUTION,
-        SAMPLE_INTERVAL
-};
+    TEETH_PER_REVOLUTION,
+    SAMPLE_INTERVAL};
 
-SusPot susPot {
-    HWPin::POT_PIN,
-        10000,
-        SUS_LUT
-};
-
-
+// SusPot susPot{
+//     HWPin::POT_PIN,
+//     10000,
+//     SUS_LUT};
 
 void setup() {
     Serial.begin(115200);
     // Configure the potentiometer pin.
-    pinMode(POT_PIN, INPUT);
-    wheelSpeed.initalize();
 
+    wheelSpeed.initalize();
+    // susPot.initialize();
+
+    can.initialize();
 }
 
 void loop() {
-    // Read the potentiometer value.
-    int potValue = analogRead(POT_PIN);
-    float voltage = POT_CONST * potValue;
-    float distance = potValue / SLOPE;
-
-    Serial.print("Potentiometer Value: ");
-    Serial.println(potValue);
-    Serial.print("Voltage: ");
-    Serial.println(voltage);
-    Serial.print("Distance: ");
-    Serial.println(distance);
+    // float currentDisplacement = susPot.getDisplacement();
+    // can.displacementSignal = currentDisplacement;
 
     // Update the wheel speed calculations.;
     float currentRpm = wheelSpeed.getRPM();
-    Serial.print("Moving Average RPM: ");
-    Serial.println(currentRpm);
+    can.wheelSpeedSignal = currentRpm;
 
-    // Short delay to allow the Serial Monitor to update at a readable rate.
-    delay(100);
+    can.tick();
 }
