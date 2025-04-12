@@ -1,6 +1,7 @@
 #ifndef __CAN_TX_H__
 #define __CAN_TX_H__
 
+#include <virtualTimer.h>
 #include <CAN.h>
 
 class CANTX {
@@ -28,8 +29,6 @@ class CANTX {
 
     void tick() {
         driveBus.Tick();
-        Serial.println("Ticking CAN!");
-        flWheel.EncodeAndSend();
         timerGroup.Tick(millis());
     }
 };
