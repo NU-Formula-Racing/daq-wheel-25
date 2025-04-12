@@ -6,7 +6,7 @@
 class CANTX {
    public:
     // put function declarations here:
-    CAN driveBus;
+    ESPCAN can{10U, GPIO_NUM_16, GPIO_NUM_4};
     VirtualTimerGroup timerGroup;
 
     MakeSignedCANSignal(float, 0, 16, 1.0, 0.0) wheelSpeedSignal;
