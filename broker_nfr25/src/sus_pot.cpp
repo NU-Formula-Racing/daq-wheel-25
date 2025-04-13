@@ -9,6 +9,8 @@ void SusPot::initialize() {
     pinMode(_analogPin, INPUT);
 }
 
-float getDisplacement() {
-    return 0;
+float SusPot::getDisplacement() {
+    // calculate the voltage
+    return 100;
+
 }

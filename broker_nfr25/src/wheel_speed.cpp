@@ -31,7 +31,7 @@ float WheelSpeed::getRPM() {
         return _cachedMovingAverageRPM;
 
     // store this in the buffer
-    noInterrupts();
+    // noInterrupts();
     _tickBuffer[_bufferIndex] = (__WheelTickInfo){
         .tickTime = currentTime,
         .sampleInterval = currentTime - _lastSampleTime,
@@ -40,7 +40,7 @@ float WheelSpeed::getRPM() {
     _lastSampleTime = currentTime;
     _tickCount = 0;
     _bufferIndex = (_bufferIndex + 1) % BUFFER_SIZE;
-    interrupts();
+    // interrupts();
 
     _cachedMovingAverageRPM = calcualtedWeightedMovingAverageRPM();
     return _cachedMovingAverageRPM;
@@ -57,12 +57,17 @@ float WheelSpeed::calcualtedWeightedMovingAverageRPM() {
         float ticksPerMS = (float)info.tickValue / (float)info.sampleInterval;
 
         // now calculate a weight
+        
         uint64_t timeSince = currentTime - info.tickTime;
-        float weight = 1 / (float)timeSince;
+        float weight = 1;
+        if (timeSince != 0) 
+            float weight = 1 / (float)timeSince;
 
         totalWeight += weight;
         totalWeightedTicksPerMS += weight * ticksPerMS;
     }
+
+    if (totalWeight == 0) return 0;
 
     float weightedAverageTicksPerMS = totalWeightedTicksPerMS / totalWeight;
 

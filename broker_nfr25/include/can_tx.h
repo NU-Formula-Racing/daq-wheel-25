@@ -25,17 +25,32 @@ class CANTX {
     MakeSignedCANSignal(float, 32, 16, 1.0, 0.0) loadSignal;
 
     CANTXMessage<3> flWheel{driveBus, 0x249, false, 6, 100, wheelSpeedSignal, displacementSignal, loadSignal};
-    // CANTXMessage<3> frWheel{driveBus, 0x24A, 6, 0, wheelSpeedSignal, displacementSignal, loadSignal};
-    // CANTXMessage<3> blWheel{driveBus, 0x24B, 6, 0, wheelSpeedSignal, displacementSignal, loadSignal};
-    // CANTXMessage<3> brWheel{driveBus, 0x24C, 6, 0, wheelSpeedSignal, displacementSignal, loadSignal};
+    CANTXMessage<3> frWheel{driveBus, 0x24A, 6, 0, wheelSpeedSignal, displacementSignal, loadSignal};
+    CANTXMessage<3> blWheel{driveBus, 0x24B, 6, 0, wheelSpeedSignal, displacementSignal, loadSignal};
+    CANTXMessage<3> brWheel{driveBus, 0x24C, 6, 0, wheelSpeedSignal, displacementSignal, loadSignal};
 
     void initialize() {
         driveBus.Initialize(ICAN::BaudRate::kBaud500K);
         timerGroup.AddTimer(100, [this]() {
             Serial.println("Sending message!");
-            flWheel.EncodeAndSend();
+            // figure out what wheel we are
+            switch (this->position) {
+                case BrokerPosition::BP_FL:
+                    flWheel.EncodeAndSend();
+                    break;
+                case BrokerPosition::BP_FR:
+                    frWheel.EncodeAndSend();
+                    break;
+                case BrokerPosition::BP_BL:
+                    blWheel.EncodeAndSend();
+                    break;
+                case BrokerPosition::BP_BR:
+                    brWheel.EncodeAndSend();
+                    break;
+            }
         });
 
+        Serial.println("Reading Settings...");
         pinMode(HWPin::FB_SETTING, INPUT);
         pinMode(HWPin::LR_SETTING, INPUT);
         pinMode(HWPin::FB_INDICATOR, OUTPUT);

@@ -13,19 +13,22 @@ WheelSpeed wheelSpeed{
     TEETH_PER_REVOLUTION,
     SAMPLE_INTERVAL};
 
-// SusPot susPot{
-//     HWPin::POT_PIN,
-//     10000,
-//     SUS_LUT};
+SusPot susPot{
+    HWPin::POT_PIN,
+    10000,
+    SUS_LUT};
 
 void setup() {
     Serial.begin(115200);
     // turn on the power indicator
+    Serial.println("Initializing Power LED!");
     pinMode(HWPin::POWER_LED, OUTPUT);
     digitalWrite(HWPin::POWER_LED, HIGH);
 
+    Serial.println("Initializing Wheel Speed!");
     wheelSpeed.initalize();
-    // susPot.initialize();
+    susPot.initialize();
+    Serial.println("Initializing CAN!");
     can.initialize();
 }
 
@@ -35,5 +38,9 @@ void loop() {
     // Update the wheel speed calculations.;
     float currentRpm = wheelSpeed.getRPM();
     can.wheelSpeedSignal = currentRpm;
+    float currentDisplacement = susPot.getDisplacement();
+    can.displacementSignal = currentDisplacement;
+    can.loadSignal = 0;
+
     can.tick();
 }
