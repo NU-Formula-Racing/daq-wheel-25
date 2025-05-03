@@ -5,6 +5,22 @@
 
 #include "lut.h"
 
+// Resistor Configuration -> Wheel position specification
+// 
+// When indicator is high, it is the FRONT or LEFT wheel
+//
+// _1 -> Left or Right
+// _2 -> Front or Back
+//
+// R7 -> Pullup to 3v3 () -> Left or Front
+// R8 -> Pulldown to GND -> Back or Right
+//
+// R7_1 & R7_2 -> Front Left (Luscious Locks)
+// R8_1 & R7_2 -> Front Right
+// R7_1 & R8_2 -> Back Left 
+// R8_1 & R8_2 -> Back Right
+
+
 enum HWPin : uint8_t {
     WHEEL_SPEED_PIN = GPIO_NUM_22,
     POT_PIN = GPIO_NUM_27,

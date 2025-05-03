@@ -74,6 +74,9 @@ class CANTX {
         // write the indciators
         digitalWrite(HWPin::FB_INDICATOR, front ? HIGH : LOW);
         digitalWrite(HWPin::LR_INDICATOR, left ? HIGH : LOW);
+
+        Serial.print("Wheel Configuration: ");
+        Serial.println(front ? (left ? "Front-Left" : "Front-Right") : (left ? "Back-Left" : "Back-Right"));
     }
 
     void tick() {

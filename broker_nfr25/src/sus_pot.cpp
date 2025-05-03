@@ -10,7 +10,8 @@ void SusPot::initialize() {
 }
 
 float SusPot::getDisplacement() {
-    // calculate the voltage
-    return 100;
-
+    float voltage = analogRead(_analogPin)/4096*3.3;
+    float travel = SUS_LUT.getValue(voltage);
+    //Serial.println(travel); 
+    return travel;
 }
