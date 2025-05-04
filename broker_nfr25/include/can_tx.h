@@ -32,7 +32,7 @@ class CANTX {
     void initialize() {
         driveBus.Initialize(ICAN::BaudRate::kBaud500K);
         timerGroup.AddTimer(100, [this]() {
-            Serial.println("Sending message!");
+            // Serial.println("Sending message!");
             // figure out what wheel we are
             switch (this->position) {
                 case BrokerPosition::BP_FL:

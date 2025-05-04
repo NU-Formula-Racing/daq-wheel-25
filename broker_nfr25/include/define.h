@@ -23,7 +23,7 @@
 
 enum HWPin : uint8_t {
     WHEEL_SPEED_PIN = GPIO_NUM_22,
-    POT_PIN = GPIO_NUM_27,
+    POT_PIN = GPIO_NUM_15,
     POWER_LED = GPIO_NUM_25,
     TEMP_POWER_LED = GPIO_NUM_26,
     FB_SETTING = GPIO_NUM_34,
@@ -40,7 +40,7 @@ enum HWPin : uint8_t {
 static NumericLUT SUS_LUT = {
     {
         {0, 0},    // when we read 0 volts, we are at 0 cm
-        {3.3, 3},  // when we read 3.3 volts, we are at 3 cm
+        {3.3, 25},  // when we read 3.3 volts, we are at 25 cm
     },
     InterpolationType::IT_LERP  // linear interpolation
 };
