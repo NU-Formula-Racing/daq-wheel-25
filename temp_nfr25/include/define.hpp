@@ -22,7 +22,39 @@ enum HWPin {
     IR8_THERMOPILE = GPIO_NUM_36,
 };
 
+#define NUM_SENSORS 8
 #define THERMOPILE_GAIN 246
 #define THERMOPILE_OFFSET 0.55
+
+static HWPin getThermopilePin(int thermopilePin) {
+    static HWPin _thermopileLUT[NUM_SENSORS] = {
+        IR1_THERMOPILE,
+        IR2_THERMOPILE,
+        IR3_THERMOPILE,
+        IR4_THERMOPILE,
+        IR5_THERMOPILE,
+        IR6_THERMOPILE,
+        IR7_THERMOPILE,
+        IR8_THERMOPILE,
+    };
+
+    return _thermopileLUT[thermopilePin];
+}
+
+static HWPin getThermistorPin(int thermistorPin) {
+    static HWPin _thermistorLUT[NUM_SENSORS] = {
+        IR2_THERMISTOR, // we had to cut the trace, use IR2
+        IR2_THERMISTOR,
+        IR3_THERMISTOR,
+        IR4_THERMISTOR,
+        IR5_THERMISTOR,
+        IR6_THERMISTOR,
+        IR7_THERMISTOR,
+        IR8_THERMISTOR,
+    };
+
+    return _thermistorLUT[thermistorPin];
+}
+
 
 #endif  // __DEFINE_H__
