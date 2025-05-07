@@ -1,6 +1,7 @@
 #include <Arduino.h>
-#include <iostream>
+
 #include <bitset>
+#include <iostream>
 /*********
   Rui Santos & Sara Santos - Random Nerd Tutorials
   Complete instructions at https://RandomNerdTutorials.com/esp32-uart-communication-serial-arduino/
@@ -18,11 +19,10 @@ HardwareSerial mySerial(1);
 int counter = 0;
 
 void setup() {
-  //Serial.begin(115200);
-  mySerial.begin(9600, SERIAL_8N1, RXD1, TXD1);  // UART setup
-  
-  Serial.println("ESP32 UART Transmitter");
-  
+    // Serial.begin(115200);
+    mySerial.begin(9600, SERIAL_8N1, RXD1, TXD1);  // UART setup
+
+    Serial.println("ESP32 UART Transmitter");
 }
 
 String convertToBinary(int n) {
@@ -46,28 +46,24 @@ String convertToBinary(int n) {
     return binaryString;
 }
 
-
-
-
 void loop() {
-  
-String tempArray[8][4];
-for (int j = 0; j < 8; j++) {
-  for (int i = 0; i < 4; i++) {
-        String binary = convertToBinary(random(0,256));
-        tempArray[j][i] = binary;  // Generate a random number between 0 and 255
+    String tempArray[8][4];
+    for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < 4; i++) {
+            String binary = convertToBinary(random(0, 256));
+            tempArray[j][i] = binary;  // Generate a random number between 0 and 255
+        }
     }
-}
-   
-  for (int j = 0; j < 8; j++) {
-    for (int i = 0; i < 4; i++) {
-      mySerial.println(tempArray[j][i]);
-      mySerial.println(",");
-    }
-    mySerial.println("----");
-  }
 
-  mySerial.println("---END OF TEMP BLOCK---");
-  
-  delay(1000); 
+    for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < 4; i++) {
+            mySerial.println(tempArray[j][i]);
+            mySerial.println(",");
+        }
+        mySerial.println("----");
+    }
+
+    mySerial.println("---END OF TEMP BLOCK---");
+
+    delay(1000);
 }
