@@ -22,6 +22,8 @@ struct XYPair {
 /// interpolate between data points.
 class NumericLUT {
    public:
+    NumericLUT() : _data(), _type(InterpolationType::IT_LERP) {}
+
     /// @brief Constructs a NumericLUT from an initializer_list of XYPair.
     /// Example usage:
     /// @code
@@ -43,6 +45,11 @@ class NumericLUT {
     /// @param x The input value for which to compute the interpolated output
     /// @return The interpolated y value
     float getValue(float x) const;
+
+    /// @brief Gets an interpolated value for a given input y
+    /// @param y The input value for which to compute the interpolated output
+    /// @return The interpolated y value
+    float getInverseValue(float y) const;
 
    private:
     /// @brief Linear interpolation helper

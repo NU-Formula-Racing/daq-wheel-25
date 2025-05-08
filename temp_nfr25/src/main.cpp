@@ -1,43 +1,50 @@
 #include <Arduino.h>
-
+#include <memory>
 #include <iostream>
 
+#include "thermopile.hpp"
 #include "define.hpp"
 
 #define ADC_CONST 3.3 / 4096;
 
-static double __readVoltage(HWPin pin) {
-    double reading = analogRead(pin);  // Reference voltage is 3v3 so maximum reading is 3v3 = 4095 in range 0 to 4095
-    if (reading < 1 || reading > 4095) return 0;
-    // return -0.000000000009824 * pow(reading,3) + 0.000000016557283 * pow(reading,2) + 0.000854596860691 * reading + 0.065440348345433;
-    return -0.000000000000016 * pow(reading, 4) + 0.000000000118171 * pow(reading, 3) - 0.000000301211691 * pow(reading, 2) + 0.001109019271794 * reading + 0.034143524634089;
-}
+std::array<Thermopile, NUM_SENSORS> g_sensors;
 
 void setup() {
     Serial.begin(115200);
 
+    ThermopileConfig config = {
+        .thermistorBeta = 3960,
+        .thermistorVin = 3.3,
+        .thermistorR2 = 10000,
+        .thermistorRoomTempResistance = 100000,
+        .thermopileSignalOffset = 0.55,
+        .thermopileSignalGain = 246,
+        .emissivity = 1,
+        .thermopileFactor = 1,
+        .thermopileLut = std::make_shared<NumericLUT>(__thermopileLUT)
+    };
+
+    // create the sensors
     for (int i = 0; i < NUM_SENSORS; i++) {
-        pinMode(getThermistorPin(i), INPUT);
-        pinMode(getThermopilePin(i), INPUT);
+        new (&g_sensors[i]) Thermopile(
+            getThermopilePin(i),
+            getThermistorPin(i),
+            config
+        );
     }
 }
 
 void loop() {
-    float averageThemistorValue = 0;
+    // float averageThemistorValue = 0;
 
     for (int i = 0; i < NUM_SENSORS; i++) {
-        float thermistorRaw = __readVoltage(getThermistorPin(i));
-        float thermopileRaw = __readVoltage(getThermopilePin(i));
-        averageThemistorValue += thermistorRaw;
-
-        float thermopileTransform = (thermopileRaw - THERMOPILE_OFFSET) / THERMOPILE_GAIN;
-        float temp = __thermopileLUT.getValue(thermopileTransform);
-        Serial.printf("%0.5f (%0.5f) ", temp, thermopileTransform);
+        Thermopile thermopile = g_sensors[i];
+        Serial.printf("%0.2f (%0.2f) ", thermopile.getObjectTemperature(), thermopile.getAmbientTemperature());
     }
 
-    averageThemistorValue /= NUM_SENSORS;
-    Serial.print(" | ");
-    Serial.print(averageThemistorValue);
+    // averageThemistorValue /= NUM_SENSORS;
+    // Serial.print(" | ");
+    // Serial.print(averageThemistorValue);
     Serial.print("\n");
     delay(100);
 }

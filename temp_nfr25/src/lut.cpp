@@ -66,6 +66,64 @@ float NumericLUT::getValue(float x) const {
     return _data.back().y;
 }
 
+float NumericLUT::getInverseValue(float y) const {
+    // 1) no data?
+    if (_data.empty()) {
+        return 0.0f;
+    }
+
+    // 2) clamp to ends
+    if (y <= _data.front().y) {
+        return _data.front().x;
+    }
+    if (y >= _data.back().y) {
+        return _data.back().x;
+    }
+
+    // 3) find the segment where y lives
+    for (size_t i = 0; i < _data.size() - 1; ++i) {
+        float x0 = _data[i].x, y0 = _data[i].y;
+        float x1 = _data[i + 1].x, y1 = _data[i + 1].y;
+
+        // does y lie between y0 and y1?
+        if ((y >= y0 && y <= y1) || (y <= y0 && y >= y1)) {
+            float dx = x1 - x0;
+            float dy = y1 - y0;
+
+            // flat segment?
+            if (dy == 0.0f) {
+                return x0;
+            }
+
+            float t;
+            if (_type == InterpolationType::IT_LERP) {
+                // linear inverse: t = (y - y0)/(y1 - y0)
+                t = (y - y0) / dy;
+            } else {
+                // smoothstep inverse: solve  f(t)=3t^2−2t^3 = s
+                float s = (y - y0) / dy;
+                float lo = 0.0f, hi = 1.0f;
+                // binary‐search t in [0,1] until f(t)≈s
+                for (int iter = 0; iter < 20; ++iter) {
+                    float mid = 0.5f * (lo + hi);
+                    float f = mid * mid * (3.0f - 2.0f * mid);  // 3t^2 - 2t^3
+                    if (f < s)
+                        lo = mid;
+                    else
+                        hi = mid;
+                }
+                t = 0.5f * (lo + hi);
+            }
+
+            // map back to x
+            return x0 + dx * t;
+        }
+    }
+
+    // fallback
+    return _data.back().x;
+}
+
 float NumericLUT::lerp(float a, float b, float t) const {
     return a + (b - a) * t;
 }
