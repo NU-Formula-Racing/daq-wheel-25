@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+#include "lut.hpp"
+
 enum HWPin {
     IR1_THERMISTOR = GPIO_NUM_0,
     IR1_THERMOPILE = GPIO_NUM_4,
@@ -43,7 +45,7 @@ static HWPin getThermopilePin(int thermopilePin) {
 
 static HWPin getThermistorPin(int thermistorPin) {
     static HWPin _thermistorLUT[NUM_SENSORS] = {
-        IR2_THERMISTOR, // we had to cut the trace, use IR2
+        IR2_THERMISTOR,  // we had to cut the trace, use IR2
         IR2_THERMISTOR,
         IR3_THERMISTOR,
         IR4_THERMISTOR,
@@ -56,5 +58,20 @@ static HWPin getThermistorPin(int thermistorPin) {
     return _thermistorLUT[thermistorPin];
 }
 
+static NumericLUT __thermopileLUT = { // mv -> C
+    {
+        {-0.0002, 0},
+        {-0.0001, 10},
+        {-0.00025, 20},
+        {0.00005, 30},
+        {0.00013, 40},
+        {0.000225, 50},
+        {0.00033, 60},
+        {0.00045, 70},
+        {0.0006, 80},
+        {0.000725, 90},
+        {0.000975, 100},
+    },
+    InterpolationType::IT_LERP};
 
 #endif  // __DEFINE_H__
