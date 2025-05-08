@@ -59,19 +59,19 @@ static HWPin getThermistorPin(int thermistorPin) {
     return _thermistorLUT[thermistorPin];
 }
 
-static NumericLUT __thermopileLUT = { // mv -> C
+static NumericLUT __thermopileLUT = { // V -> C
     {
-        {-0.0002, 0},
-        {-0.0001, 10},
-        {-0.00025, 20},
-        {0.00005, 30},
-        {0.00013, 40},
-        {0.000225, 50},
-        {0.00033, 60},
-        {0.00045, 70},
-        {0.0006, 80},
-        {0.000725, 90},
-        {0.000975, 100},
+        {-0.002, 0},
+        {-0.001, 10},
+        {-0.0025, 20},
+        {0.0005, 30},
+        {0.0013, 40},
+        {0.00225, 50},
+        {0.0033, 60},
+        {0.0045, 70},
+        {0.006, 80},
+        {0.00725, 90},
+        {0.00975, 100},
     },
     InterpolationType::IT_LERP};
 

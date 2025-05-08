@@ -39,7 +39,7 @@ void loop() {
 
     for (int i = 0; i < NUM_SENSORS; i++) {
         Thermopile thermopile = g_sensors[i];
-        Serial.printf("%0.2f (%0.2f) ", thermopile.getObjectTemperature(), thermopile.getAmbientTemperature());
+        Serial.printf("%0.2fC (%0.2fmv) %0.2fC | ", thermopile.getObjectTemperature(), thermopile.getThermopileVoltage() * 1000, thermopile.getAmbientTemperature());
     }
 
     // averageThemistorValue /= NUM_SENSORS;
