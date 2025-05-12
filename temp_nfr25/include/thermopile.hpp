@@ -21,8 +21,7 @@ struct ThermopileConfig {
     float thermopileSignalGain;
 
     // something that we find and calibrate
-    float emissivity;
-    float thermopileFactor;
+    float calibrationConstant;
 
     // see ZTB
     std::shared_ptr<NumericLUT> thermopileLut;
@@ -68,38 +67,42 @@ class Thermopile {
     }
 
     float getObjectTemperature() {
-        // raw thermopile amplifier output → true sensor voltage Vtp
+        // Raw thermopile amplifier output → true sensor voltage Vtp
         const float voltageThermopile = getThermopileVoltage();
-
-        // bail if something went horribly wrong
+    
+        // Bail if something went horribly wrong
         if (!isfinite(voltageThermopile)) {
             return NAN;
         }
-
-        // measure ambient temperature (°C) via the thermistor
+    
+        // Measure ambient temperature (°C) via the thermistor
         const float ambientTemperature = getAmbientTemperature();
         if (!isfinite(ambientTemperature)) {
             return NAN;
         }
-
-        // find the voltage we should compensate with
-        // what is the voltage that can be attributed to the ambient temperature?
-        const float voltageAmbient = _config.thermopileLut->getInverseValue(ambientTemperature);
-
-        // compensate with that voltage
-        const float voltageCompensated = voltageThermopile + voltageAmbient;
-
-        // 5) invert the same LUT to go from fObject → To (°C)
-        const float tempObject = _config.thermopileLut->getValue(voltageCompensated);
-
-        return tempObject;
+    
+        // Convert ambient temperature to Kelvin
+        const float ambientTempKelvin = ambientTemperature + 273.15f;
+    
+        // Calculate the difference in the fourth power between object and ambient temperatures
+        const float tempDifferenceFourthPower = voltageThermopile / _config.calibrationConstant;
+    
+        // Calculate object temperature in Kelvin using the Stefan-Boltzmann relationship
+        const float objTempKelvin = pow(ambientTempKelvin, 4) + tempDifferenceFourthPower;
+        if (objTempKelvin <= 0.0f) {
+            return NAN; // Invalid temperature value
+        }
+    
+        // Take the fourth root to solve for object temperature
+        const float objTempCelsius = pow(objTempKelvin, 0.25f) - 273.15f; // Convert back to Celsius
+    
+        return objTempCelsius;
     }
-
     float getThermopileVoltage() {
-                // raw thermopile amplifier output → true sensor voltage Vtp
-                const float frontendOutput = readVoltage(_thermopileSignal);
-                const float voltageThermopile = (frontendOutput - _config.thermopileSignalOffset) / _config.thermopileSignalGain;
-                return voltageThermopile;
+        // raw thermopile amplifier output → true sensor voltage Vtp
+        const float frontendOutput = readVoltage(_thermopileSignal);
+        const float voltageThermopile = (frontendOutput - _config.thermopileSignalOffset) / _config.thermopileSignalGain;
+        return voltageThermopile;
     }
 
     Thermopile &operator=(const Thermopile &other) = default;

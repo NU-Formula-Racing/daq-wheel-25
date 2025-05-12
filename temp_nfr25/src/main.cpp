@@ -19,8 +19,7 @@ void setup() {
         .thermistorRoomTempResistance = 100000,
         .thermopileSignalOffset = 0.55,
         .thermopileSignalGain = 246,
-        .emissivity = 1,
-        .thermopileFactor = 1,
+        .calibrationConstant = (1.6 * 1.6e-12),
         .thermopileLut = std::make_shared<NumericLUT>(__thermopileLUT)
     };
 
@@ -39,7 +38,7 @@ void loop() {
 
     for (int i = 0; i < NUM_SENSORS; i++) {
         Thermopile thermopile = g_sensors[i];
-        Serial.printf("%0.2fC (%0.2fmv) %0.2fC | ", thermopile.getObjectTemperature(), thermopile.getThermopileVoltage() * 1000, thermopile.getAmbientTemperature());
+        Serial.printf("%0.2fC (%0.4fmv) %0.2fC | ", thermopile.getObjectTemperature(), thermopile.getThermopileVoltage() * 1000, thermopile.getAmbientTemperature());
     }
 
     // averageThemistorValue /= NUM_SENSORS;
