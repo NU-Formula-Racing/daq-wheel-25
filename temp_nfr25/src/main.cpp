@@ -1,13 +1,56 @@
 #include <Arduino.h>
 #include <memory>
 #include <iostream>
+#include <vector>
 
 #include "thermopile.hpp"
 #include "define.hpp"
+// #include "message.hpp"
 
 #define ADC_CONST 3.3 / 4096;
 
 std::array<Thermopile, NUM_SENSORS> g_sensors;
+
+enum class messageType : uint8_t {
+    ACK, 
+    TEMP
+};
+
+struct Message {
+    messageType type;
+    std::vector<float> temps;
+    uint64_t checksum;
+
+    Message(messageType type, const std::vector<float>& temp_vector, uint64_t checksum)
+        : type(type), temps(temp_vector), checksum(checksum) {}
+};
+
+uint16_t calculate_checksum(std::vector<float> temp_readings) {
+    uint16_t checksum = 0;
+
+    for (size_t i = 0; i < temp_readings.size(); ++i) {
+        checksum ^= static_cast<int16_t>(temp_readings[i]);  // XOR each temperature reading
+    }
+
+    return checksum;
+}
+
+void sendMessage(const Message& message) {
+    // Start by sending the message type
+    Serial.print(static_cast<uint8_t>(message.type));  // Convert enum to its underlying integer value
+    
+    // Send temperatures (each float as a string)
+    for (size_t i = 0; i < message.temps.size(); ++i) {
+        Serial.print(message.temps[i], 2);  // Send temperature with 2 decimal places
+        if (i < message.temps.size() - 1) {
+            Serial.print(",");  // Separate values by commas
+        }
+    }
+
+    // Send the checksum
+    Serial.print(",");
+    Serial.println(message.checksum);
+}
 
 void setup() {
     Serial.begin(115200);
@@ -35,15 +78,21 @@ void setup() {
 
 void loop() {
     // float averageThemistorValue = 0;
-
+    std::vector<float> current_temps;
     for (int i = 0; i < NUM_SENSORS; i++) {
         Thermopile thermopile = g_sensors[i];
-        Serial.printf("%0.2fC (%0.4fmv) %0.2fC | ", thermopile.getObjectTemperature(), thermopile.getThermopileVoltage() * 1000, thermopile.getAmbientTemperature());
+        current_temps.push_back(thermopile.getObjectTemperature());
+        //Serial.printf("%0.2fC (%0.4fmv) %0.2fC | ", thermopile.getObjectTemperature(), thermopile.getThermopileVoltage() * 1000, thermopile.getAmbientTemperature());
     }
 
     // averageThemistorValue /= NUM_SENSORS;
     // Serial.print(" | ");
     // Serial.print(averageThemistorValue);
     Serial.print("\n");
+    uint16_t checksum = calculate_checksum(current_temps);
+    Message message(messageType::TEMP, current_temps, checksum);
+
+    sendMessage(message);
+
     delay(100);
 }
