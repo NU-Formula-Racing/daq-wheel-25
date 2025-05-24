@@ -1,0 +1,462 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2025-05-24 17:56:46
+count workspace : d:\Documents\Code\School\NFR_24-25\daq-wheel-25\broker_nfr25
+total files : 423
+total code lines : 150068
+total comment lines : 2811
+total blank lines : 4618
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |           .ini|            132|             87|             33|  0.088|
+   |             .h|           5063|           1067|            707|    3.4|
+   |           .cpp|           1839|            389|            327|    1.2|
+   |               |            691|             40|            113|   0.46|
+   |           .hpp|             38|              5|             10|  0.025|
+   |      .checksum|              1|              0|              0|0.00067|
+   |            .py|            835|             63|            128|   0.56|
+   |            .rb|           1501|            269|            281|    1.0|
+   |         .cmake|              1|              0|              0|0.00067|
+   |         .build|            163|              0|             30|   0.11|
+   |             .c|           2606|            300|            372|    1.7|
+   |           .yml|            223|              9|             32|   0.15|
+   |           .erb|             36|              1|              0|  0.024|
+   |            .md|            238|              3|            119|   0.16|
+   |          .json|             79|              0|              4|  0.053|
+   |           .txt|            255|              0|             56|   0.17|
+   |             .d|           5210|              0|              0|    3.5|
+   |          .wrap|              8|              2|              1| 0.0053|
+   |           .dat|              4|              4|              0| 0.0027|
+   |        .sample|           1600|            572|            236|    1.1|
+   |           .dbc|           2234|              0|            136|    1.5|
+   |           .csv|            676|              0|              0|   0.45|
+   |           .map|         126635|              0|           2033|     84|
+   -------------------------------------------------------------------------
+.gitignore, code is 5, comment is 0, blank is 0.
+.pio\build\esp32dev\.sconsign311.dblite, it is a binary file.
+.pio\build\esp32dev\bootloader.bin, it is a binary file.
+.pio\build\esp32dev\firmware.bin, it is a binary file.
+.pio\build\esp32dev\firmware.elf, it is a binary file.
+.pio\build\esp32dev\firmware.map, code is 126635, comment is 0, blank is 2033.
+.pio\build\esp32dev\FrameworkArduino\base64.cpp.d, code is 139, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\base64.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\cbuf.cpp.d, code is 3, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\cbuf.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\Esp.cpp.d, code is 146, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\Esp.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-adc.c.d, code is 110, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-adc.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-bt.c.d, code is 107, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-bt.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-cpu.c.d, code is 123, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-cpu.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-dac.c.d, code is 108, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-dac.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-gpio.c.d, code is 122, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-gpio.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-i2c-slave.c.d, code is 92, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-i2c-slave.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-i2c.c.d, code is 114, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-i2c.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-ledc.c.d, code is 108, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-ledc.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-matrix.c.d, code is 105, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-matrix.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-misc.c.d, code is 136, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-misc.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-psram.c.d, code is 104, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-psram.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-rgb-led.c.d, code is 104, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-rgb-led.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-rmt.c.d, code is 108, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-rmt.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-sigmadelta.c.d, code is 109, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-sigmadelta.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-spi.c.d, code is 122, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-spi.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-time.c.d, code is 145, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-time.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-timer.c.d, code is 110, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-timer.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-tinyusb.c.d, code is 3, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-tinyusb.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-touch.c.d, code is 107, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-touch.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-uart.c.d, code is 121, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\esp32-hal-uart.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\firmware_msc_fat.c.d, code is 3, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\firmware_msc_fat.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\FirmwareMSC.cpp.d, code is 5, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\FirmwareMSC.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\FunctionalInterrupt.cpp.d, code is 137, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\FunctionalInterrupt.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\HardwareSerial.cpp.d, code is 138, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\HardwareSerial.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\HWCDC.cpp.d, code is 4, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\HWCDC.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\IPAddress.cpp.d, code is 137, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\IPAddress.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\IPv6Address.cpp.d, code is 138, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\IPv6Address.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\libb64\cdecode.c.d, code is 3, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\libb64\cdecode.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\libb64\cencode.c.d, code is 3, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\libb64\cencode.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\main.cpp.d, code is 139, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\main.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\MD5Builder.cpp.d, code is 138, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\MD5Builder.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\Print.cpp.d, code is 136, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\Print.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\stdlib_noniso.c.d, code is 12, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\stdlib_noniso.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\Stream.cpp.d, code is 136, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\Stream.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\StreamString.cpp.d, code is 137, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\StreamString.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\Tone.cpp.d, code is 136, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\Tone.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\USB.cpp.d, code is 4, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\USB.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\USBCDC.cpp.d, code is 4, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\USBCDC.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\USBMSC.cpp.d, code is 4, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\USBMSC.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\wiring_pulse.c.d, code is 111, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\wiring_pulse.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\wiring_shift.c.d, code is 111, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\wiring_shift.c.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\WMath.cpp.d, code is 18, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\WMath.cpp.o, it is a binary file.
+.pio\build\esp32dev\FrameworkArduino\WString.cpp.d, code is 136, comment is 0, blank is 0.
+.pio\build\esp32dev\FrameworkArduino\WString.cpp.o, it is a binary file.
+.pio\build\esp32dev\idedata.json, code is 1, comment is 0, blank is 0.
+.pio\build\esp32dev\lib0a6\CAN\esp_can.cpp.d, code is 141, comment is 0, blank is 0.
+.pio\build\esp32dev\lib0a6\CAN\esp_can.cpp.o, it is a binary file.
+.pio\build\esp32dev\lib0a6\CAN\teensy_can.cpp.d, code is 2, comment is 0, blank is 0.
+.pio\build\esp32dev\lib0a6\CAN\teensy_can.cpp.o, it is a binary file.
+.pio\build\esp32dev\lib0a6\libCAN.a, it is a binary file.
+.pio\build\esp32dev\lib4b7\libtimers.a, it is a binary file.
+.pio\build\esp32dev\lib4b7\timers\main.cpp.d, code is 137, comment is 0, blank is 0.
+.pio\build\esp32dev\lib4b7\timers\main.cpp.o, it is a binary file.
+.pio\build\esp32dev\lib4b7\timers\virtualTimer.cpp.d, code is 3, comment is 0, blank is 0.
+.pio\build\esp32dev\lib4b7\timers\virtualTimer.cpp.o, it is a binary file.
+.pio\build\esp32dev\libFrameworkArduino.a, it is a binary file.
+.pio\build\esp32dev\partitions.bin, it is a binary file.
+.pio\build\esp32dev\src\lut.cpp.d, code is 135, comment is 0, blank is 0.
+.pio\build\esp32dev\src\lut.cpp.o, it is a binary file.
+.pio\build\esp32dev\src\main.cpp.d, code is 144, comment is 0, blank is 0.
+.pio\build\esp32dev\src\main.cpp.o, it is a binary file.
+.pio\build\esp32dev\src\sus_pot.cpp.d, code is 137, comment is 0, blank is 0.
+.pio\build\esp32dev\src\sus_pot.cpp.o, it is a binary file.
+.pio\build\esp32dev\src\wheel_speed.cpp.d, code is 137, comment is 0, blank is 0.
+.pio\build\esp32dev\src\wheel_speed.cpp.o, it is a binary file.
+.pio\build\esp32dev\src\wheel_temp.cpp.d, code is 138, comment is 0, blank is 0.
+.pio\build\esp32dev\src\wheel_temp.cpp.o, it is a binary file.
+.pio\build\project.checksum, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\.clang-format, code is 11, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\.piopm, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\config, code is 20, comment is 3, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\description, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\HEAD, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\hooks\applypatch-msg.sample, code is 14, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\CAN\.git\hooks\commit-msg.sample, code is 20, comment is 0, blank is 3.
+.pio\libdeps\esp32dev\CAN\.git\hooks\fsmonitor-watchman.sample, code is 93, comment is 2, blank is 23.
+.pio\libdeps\esp32dev\CAN\.git\hooks\post-update.sample, code is 7, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\CAN\.git\hooks\pre-applypatch.sample, code is 13, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\CAN\.git\hooks\pre-commit.sample, code is 39, comment is 0, blank is 9.
+.pio\libdeps\esp32dev\CAN\.git\hooks\pre-merge-commit.sample, code is 12, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\CAN\.git\hooks\pre-push.sample, code is 46, comment is 0, blank is 6.
+.pio\libdeps\esp32dev\CAN\.git\hooks\pre-rebase.sample, code is 27, comment is 141, blank is 2.
+.pio\libdeps\esp32dev\CAN\.git\hooks\pre-receive.sample, code is 23, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\CAN\.git\hooks\prepare-commit-msg.sample, code is 18, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\CAN\.git\hooks\push-to-checkout.sample, code is 38, comment is 0, blank is 4.
+.pio\libdeps\esp32dev\CAN\.git\hooks\update.sample, code is 50, comment is 0, blank is 6.
+.pio\libdeps\esp32dev\CAN\.git\index, it is a binary file.
+.pio\libdeps\esp32dev\CAN\.git\info\exclude, code is 6, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\logs\HEAD, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\logs\refs\heads\main, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\logs\refs\remotes\origin\HEAD, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\objects\pack\pack-5dc6943e6df5ed60527d812b9c1b18a0dda0468d.idx, it is a binary file.
+.pio\libdeps\esp32dev\CAN\.git\objects\pack\pack-5dc6943e6df5ed60527d812b9c1b18a0dda0468d.pack, it is a binary file.
+.pio\libdeps\esp32dev\CAN\.git\packed-refs, code is 2, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\refs\heads\main, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\refs\remotes\origin\HEAD, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\.git\shallow, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\.github\workflows\dbc_to_csv.yml, code is 29, comment is 0, blank is 7.
+.pio\libdeps\esp32dev\CAN\.github\workflows\dbc_to_h.yml, code is 30, comment is 0, blank is 7.
+.pio\libdeps\esp32dev\CAN\.gitignore, code is 5, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\docs\dbc_to_csv.py, code is 34, comment is 4, blank is 7.
+.pio\libdeps\esp32dev\CAN\docs\dbc_to_h.py, code is 96, comment is 5, blank is 10.
+.pio\libdeps\esp32dev\CAN\docs\full_bus.csv, code is 338, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\CAN\docs\full_bus.dbc, code is 1072, comment is 0, blank is 57.
+.pio\libdeps\esp32dev\CAN\docs\full_bus.h, code is 451, comment is 3, blank is 2.
+.pio\libdeps\esp32dev\CAN\examples\CAN_Interface_Demo\platformio.ini, code is 12, comment is 9, blank is 4.
+.pio\libdeps\esp32dev\CAN\examples\CAN_Interface_Demo\src\main.cpp, code is 90, comment is 51, blank is 22.
+.pio\libdeps\esp32dev\CAN\examples\CAN_Update_Demo\platformio.ini, code is 11, comment is 12, blank is 3.
+.pio\libdeps\esp32dev\CAN\examples\CAN_Update_Demo\src\main.cpp, code is 20, comment is 5, blank is 7.
+.pio\libdeps\esp32dev\CAN\include\CAN.h, code is 10, comment is 3, blank is 3.
+.pio\libdeps\esp32dev\CAN\include\can_interface.h, code is 943, comment is 235, blank is 150.
+.pio\libdeps\esp32dev\CAN\include\esp_can.h, code is 18, comment is 6, blank is 7.
+.pio\libdeps\esp32dev\CAN\include\esp_can_update.h, code is 139, comment is 0, blank is 13.
+.pio\libdeps\esp32dev\CAN\include\freertos_atomic.h, code is 25, comment is 1, blank is 5.
+.pio\libdeps\esp32dev\CAN\include\README, code is 13, comment is 1, blank is 5.
+.pio\libdeps\esp32dev\CAN\include\teensy_can.h, code is 32, comment is 5, blank is 12.
+.pio\libdeps\esp32dev\CAN\lib\README, code is 37, comment is 2, blank is 9.
+.pio\libdeps\esp32dev\CAN\library.json, code is 26, comment is 0, blank is 2.
+.pio\libdeps\esp32dev\CAN\license.txt, code is 17, comment is 0, blank is 4.
+.pio\libdeps\esp32dev\CAN\platformio.ini, code is 27, comment is 9, blank is 6.
+.pio\libdeps\esp32dev\CAN\README.md, code is 18, comment is 1, blank is 9.
+.pio\libdeps\esp32dev\CAN\scripts\esp_can_update.dbc, code is 45, comment is 0, blank is 11.
+.pio\libdeps\esp32dev\CAN\scripts\esp_can_update.py, code is 167, comment is 6, blank is 20.
+.pio\libdeps\esp32dev\CAN\src\esp_can.cpp, code is 108, comment is 2, blank is 18.
+.pio\libdeps\esp32dev\CAN\src\teensy_can.cpp, code is 92, comment is 3, blank is 9.
+.pio\libdeps\esp32dev\CAN\test\README, code is 8, comment is 1, blank is 3.
+.pio\libdeps\esp32dev\CAN\test\test_main.cpp, code is 204, comment is 7, blank is 33.
+.pio\libdeps\esp32dev\integrity.dat, code is 2, comment is 2, blank is 0.
+.pio\libdeps\esp32dev\timers\.clang-format, code is 11, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\.piopm, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\config, code is 17, comment is 1, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\description, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\HEAD, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\hooks\applypatch-msg.sample, code is 14, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\timers\.git\hooks\commit-msg.sample, code is 20, comment is 0, blank is 3.
+.pio\libdeps\esp32dev\timers\.git\hooks\fsmonitor-watchman.sample, code is 93, comment is 2, blank is 23.
+.pio\libdeps\esp32dev\timers\.git\hooks\post-update.sample, code is 7, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\timers\.git\hooks\pre-applypatch.sample, code is 13, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\timers\.git\hooks\pre-commit.sample, code is 39, comment is 0, blank is 9.
+.pio\libdeps\esp32dev\timers\.git\hooks\pre-merge-commit.sample, code is 12, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\timers\.git\hooks\pre-push.sample, code is 46, comment is 0, blank is 6.
+.pio\libdeps\esp32dev\timers\.git\hooks\pre-rebase.sample, code is 27, comment is 141, blank is 2.
+.pio\libdeps\esp32dev\timers\.git\hooks\pre-receive.sample, code is 23, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\timers\.git\hooks\prepare-commit-msg.sample, code is 18, comment is 0, blank is 1.
+.pio\libdeps\esp32dev\timers\.git\hooks\push-to-checkout.sample, code is 38, comment is 0, blank is 4.
+.pio\libdeps\esp32dev\timers\.git\hooks\update.sample, code is 50, comment is 0, blank is 6.
+.pio\libdeps\esp32dev\timers\.git\index, it is a binary file.
+.pio\libdeps\esp32dev\timers\.git\info\exclude, code is 6, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\logs\HEAD, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\logs\refs\heads\main, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\logs\refs\remotes\origin\HEAD, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\objects\pack\pack-a6a156be3660b9c01a5d014470a92537a7c55c9f.idx, it is a binary file.
+.pio\libdeps\esp32dev\timers\.git\objects\pack\pack-a6a156be3660b9c01a5d014470a92537a7c55c9f.pack, it is a binary file.
+.pio\libdeps\esp32dev\timers\.git\packed-refs, code is 2, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\refs\heads\main, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\refs\remotes\origin\HEAD, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\.git\shallow, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\.gitignore, code is 5, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\include\README, code is 13, comment is 1, blank is 5.
+.pio\libdeps\esp32dev\timers\include\virtualTimer.h, code is 59, comment is 18, blank is 13.
+.pio\libdeps\esp32dev\timers\lib\README, code is 37, comment is 2, blank is 9.
+.pio\libdeps\esp32dev\timers\library.json, code is 4, comment is 0, blank is 0.
+.pio\libdeps\esp32dev\timers\license.txt, code is 17, comment is 0, blank is 4.
+.pio\libdeps\esp32dev\timers\platformio.ini, code is 12, comment is 9, blank is 3.
+.pio\libdeps\esp32dev\timers\README.md, code is 28, comment is 0, blank is 8.
+.pio\libdeps\esp32dev\timers\src\main.cpp, code is 33, comment is 5, blank is 7.
+.pio\libdeps\esp32dev\timers\src\virtualTimer.cpp, code is 158, comment is 99, blank is 26.
+.pio\libdeps\esp32dev\timers\test\README, code is 8, comment is 1, blank is 3.
+.pio\libdeps\esp32dev\timers\test\test_main.cpp, code is 80, comment is 2, blank is 15.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.clang-format, code is 11, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\.piopm, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\config, code is 19, comment is 3, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\description, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\HEAD, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\applypatch-msg.sample, code is 14, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\commit-msg.sample, code is 20, comment is 0, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\fsmonitor-watchman.sample, code is 93, comment is 2, blank is 23.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\post-update.sample, code is 7, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\pre-applypatch.sample, code is 13, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\pre-commit.sample, code is 39, comment is 0, blank is 9.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\pre-merge-commit.sample, code is 12, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\pre-push.sample, code is 46, comment is 0, blank is 6.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\pre-rebase.sample, code is 27, comment is 141, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\pre-receive.sample, code is 23, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\prepare-commit-msg.sample, code is 18, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\push-to-checkout.sample, code is 38, comment is 0, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\hooks\update.sample, code is 50, comment is 0, blank is 6.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\index, it is a binary file.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\info\exclude, code is 6, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\logs\HEAD, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\logs\refs\heads\main, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\logs\refs\remotes\origin\HEAD, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\objects\pack\pack-5dc6943e6df5ed60527d812b9c1b18a0dda0468d.idx, it is a binary file.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\objects\pack\pack-5dc6943e6df5ed60527d812b9c1b18a0dda0468d.pack, it is a binary file.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\packed-refs, code is 2, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\refs\heads\main, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\refs\remotes\origin\HEAD, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.git\shallow, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.github\workflows\dbc_to_csv.yml, code is 29, comment is 0, blank is 7.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.github\workflows\dbc_to_h.yml, code is 30, comment is 0, blank is 7.
+.pio\libdeps\esp32doit-devkit-v1\CAN\.gitignore, code is 5, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\docs\dbc_to_csv.py, code is 34, comment is 4, blank is 7.
+.pio\libdeps\esp32doit-devkit-v1\CAN\docs\dbc_to_h.py, code is 96, comment is 5, blank is 10.
+.pio\libdeps\esp32doit-devkit-v1\CAN\docs\full_bus.csv, code is 338, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\CAN\docs\full_bus.dbc, code is 1072, comment is 0, blank is 57.
+.pio\libdeps\esp32doit-devkit-v1\CAN\docs\full_bus.h, code is 451, comment is 3, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\CAN\examples\CAN_Interface_Demo\platformio.ini, code is 12, comment is 9, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\CAN\examples\CAN_Interface_Demo\src\main.cpp, code is 90, comment is 51, blank is 22.
+.pio\libdeps\esp32doit-devkit-v1\CAN\examples\CAN_Update_Demo\platformio.ini, code is 11, comment is 12, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\CAN\examples\CAN_Update_Demo\src\main.cpp, code is 20, comment is 5, blank is 7.
+.pio\libdeps\esp32doit-devkit-v1\CAN\include\CAN.h, code is 10, comment is 3, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\CAN\include\can_interface.h, code is 943, comment is 235, blank is 150.
+.pio\libdeps\esp32doit-devkit-v1\CAN\include\esp_can.h, code is 18, comment is 6, blank is 7.
+.pio\libdeps\esp32doit-devkit-v1\CAN\include\esp_can_update.h, code is 139, comment is 0, blank is 13.
+.pio\libdeps\esp32doit-devkit-v1\CAN\include\freertos_atomic.h, code is 25, comment is 1, blank is 5.
+.pio\libdeps\esp32doit-devkit-v1\CAN\include\README, code is 13, comment is 1, blank is 5.
+.pio\libdeps\esp32doit-devkit-v1\CAN\include\teensy_can.h, code is 32, comment is 5, blank is 12.
+.pio\libdeps\esp32doit-devkit-v1\CAN\lib\README, code is 37, comment is 2, blank is 9.
+.pio\libdeps\esp32doit-devkit-v1\CAN\library.json, code is 26, comment is 0, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\CAN\license.txt, code is 17, comment is 0, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\CAN\platformio.ini, code is 27, comment is 9, blank is 6.
+.pio\libdeps\esp32doit-devkit-v1\CAN\README.md, code is 18, comment is 1, blank is 9.
+.pio\libdeps\esp32doit-devkit-v1\CAN\scripts\esp_can_update.dbc, code is 45, comment is 0, blank is 11.
+.pio\libdeps\esp32doit-devkit-v1\CAN\scripts\esp_can_update.py, code is 167, comment is 6, blank is 20.
+.pio\libdeps\esp32doit-devkit-v1\CAN\src\esp_can.cpp, code is 108, comment is 2, blank is 18.
+.pio\libdeps\esp32doit-devkit-v1\CAN\src\teensy_can.cpp, code is 92, comment is 3, blank is 9.
+.pio\libdeps\esp32doit-devkit-v1\CAN\test\README, code is 8, comment is 1, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\CAN\test\test_main.cpp, code is 204, comment is 7, blank is 33.
+.pio\libdeps\esp32doit-devkit-v1\integrity.dat, code is 2, comment is 2, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.clang-format, code is 11, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\.piopm, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\config, code is 17, comment is 1, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\description, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\HEAD, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\applypatch-msg.sample, code is 14, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\commit-msg.sample, code is 20, comment is 0, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\fsmonitor-watchman.sample, code is 93, comment is 2, blank is 23.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\post-update.sample, code is 7, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\pre-applypatch.sample, code is 13, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\pre-commit.sample, code is 39, comment is 0, blank is 9.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\pre-merge-commit.sample, code is 12, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\pre-push.sample, code is 46, comment is 0, blank is 6.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\pre-rebase.sample, code is 27, comment is 141, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\pre-receive.sample, code is 23, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\prepare-commit-msg.sample, code is 18, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\push-to-checkout.sample, code is 38, comment is 0, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\hooks\update.sample, code is 50, comment is 0, blank is 6.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\index, it is a binary file.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\info\exclude, code is 6, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\logs\HEAD, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\logs\refs\heads\main, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\logs\refs\remotes\origin\HEAD, code is 1, comment is 1, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\objects\pack\pack-a6a156be3660b9c01a5d014470a92537a7c55c9f.idx, it is a binary file.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\objects\pack\pack-a6a156be3660b9c01a5d014470a92537a7c55c9f.pack, it is a binary file.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\packed-refs, code is 2, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\refs\heads\main, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\refs\remotes\origin\HEAD, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.git\shallow, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\.gitignore, code is 5, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\include\README, code is 13, comment is 1, blank is 5.
+.pio\libdeps\esp32doit-devkit-v1\timers\include\virtualTimer.h, code is 59, comment is 18, blank is 13.
+.pio\libdeps\esp32doit-devkit-v1\timers\lib\README, code is 37, comment is 2, blank is 9.
+.pio\libdeps\esp32doit-devkit-v1\timers\library.json, code is 4, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\timers\license.txt, code is 17, comment is 0, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\timers\platformio.ini, code is 12, comment is 9, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\timers\README.md, code is 28, comment is 0, blank is 8.
+.pio\libdeps\esp32doit-devkit-v1\timers\src\main.cpp, code is 33, comment is 5, blank is 7.
+.pio\libdeps\esp32doit-devkit-v1\timers\src\virtualTimer.cpp, code is 158, comment is 99, blank is 26.
+.pio\libdeps\esp32doit-devkit-v1\timers\test\README, code is 8, comment is 1, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\timers\test\test_main.cpp, code is 80, comment is 2, blank is 15.
+.pio\libdeps\esp32doit-devkit-v1\Unity\.editorconfig, code is 21, comment is 0, blank is 6.
+.pio\libdeps\esp32doit-devkit-v1\Unity\.gitattributes, code is 28, comment is 0, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\Unity\.github\workflows\main.yml, code is 31, comment is 0, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\Unity\.gitignore, code is 19, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\.piopm, code is 1, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\__init__.py, code is 0, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\colour_prompt.rb, code is 80, comment is 28, blank is 11.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\colour_reporter.rb, code is 31, comment is 5, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\extract_version.py, code is 10, comment is 1, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\generate_config.yml, code is 27, comment is 9, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\generate_module.rb, code is 225, comment is 35, blank is 30.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\generate_test_runner.rb, code is 425, comment is 34, blank is 52.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\parse_output.rb, code is 237, comment is 93, blank is 53.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\run_test.erb, code is 36, comment is 1, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\stylize_as_junit.py, code is 112, comment is 19, blank is 27.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\stylize_as_junit.rb, code is 182, comment is 24, blank is 45.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\test_file_filter.rb, code is 16, comment is 5, blank is 6.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\type_sanitizer.rb, code is 5, comment is 1, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\unity_test_summary.py, code is 108, comment is 12, blank is 19.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\unity_test_summary.rb, code is 96, comment is 16, blank is 27.
+.pio\libdeps\esp32doit-devkit-v1\Unity\auto\yaml_helper.rb, code is 14, comment is 5, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\Unity\CMakeLists.txt, code is 141, comment is 0, blank is 25.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\makefile, code is 62, comment is 0, blank is 10.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\meson.build, code is 39, comment is 0, blank is 9.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\readme.txt, code is 9, comment is 0, blank is 3.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\src\ProductionCode.c, code is 16, comment is 4, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\src\ProductionCode.h, code is 2, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\src\ProductionCode2.c, code is 7, comment is 2, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\src\ProductionCode2.h, code is 1, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\subprojects\unity.wrap, code is 3, comment is 1, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\test\test_runners\TestProductionCode2_Runner.c, code is 39, comment is 6, blank is 8.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\test\test_runners\TestProductionCode_Runner.c, code is 43, comment is 6, blank is 8.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\test\TestProductionCode.c, code is 37, comment is 14, blank is 11.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_1\test\TestProductionCode2.c, code is 20, comment is 4, blank is 7.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\makefile, code is 62, comment is 0, blank is 9.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\readme.txt, code is 3, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\src\ProductionCode.c, code is 16, comment is 7, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\src\ProductionCode.h, code is 2, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\src\ProductionCode2.c, code is 7, comment is 2, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\src\ProductionCode2.h, code is 1, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\test\test_runners\all_tests.c, code is 10, comment is 0, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\test\test_runners\TestProductionCode2_Runner.c, code is 8, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\test\test_runners\TestProductionCode_Runner.c, code is 10, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\test\TestProductionCode.c, code is 39, comment is 14, blank is 11.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_2\test\TestProductionCode2.c, code is 22, comment is 5, blank is 7.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\helper\UnityHelper.c, code is 9, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\helper\UnityHelper.h, code is 7, comment is 1, blank is 5.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\rakefile.rb, code is 29, comment is 1, blank is 8.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\rakefile_helper.rb, code is 161, comment is 22, blank is 43.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\readme.txt, code is 6, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\src\ProductionCode.c, code is 16, comment is 7, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\src\ProductionCode.h, code is 2, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\src\ProductionCode2.c, code is 7, comment is 2, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\src\ProductionCode2.h, code is 1, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\target_gcc_32.yml, code is 47, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\test\TestProductionCode.c, code is 37, comment is 14, blank is 11.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_3\test\TestProductionCode2.c, code is 20, comment is 5, blank is 7.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\meson.build, code is 10, comment is 0, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\readme.txt, code is 8, comment is 0, blank is 6.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\src\meson.build, code is 14, comment is 0, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\src\ProductionCode.c, code is 16, comment is 4, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\src\ProductionCode.h, code is 2, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\src\ProductionCode2.c, code is 7, comment is 2, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\src\ProductionCode2.h, code is 1, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\subprojects\unity.wrap, code is 5, comment is 1, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\test\meson.build, code is 7, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\test\test_runners\meson.build, code is 12, comment is 0, blank is 1.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\test\test_runners\TestProductionCode2_Runner.c, code is 39, comment is 6, blank is 8.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\test\test_runners\TestProductionCode_Runner.c, code is 43, comment is 6, blank is 8.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\test\TestProductionCode.c, code is 37, comment is 14, blank is 12.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\example_4\test\TestProductionCode2.c, code is 23, comment is 4, blank is 8.
+.pio\libdeps\esp32doit-devkit-v1\Unity\examples\unity_config.h, code is 3, comment is 214, blank is 27.
+.pio\libdeps\esp32doit-devkit-v1\Unity\library.json, code is 18, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\LICENSE.txt, code is 17, comment is 0, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\Unity\meson.build, code is 66, comment is 0, blank is 14.
+.pio\libdeps\esp32doit-devkit-v1\Unity\meson_options.txt, code is 3, comment is 0, blank is 0.
+.pio\libdeps\esp32doit-devkit-v1\Unity\platformio-build.py, code is 11, comment is 1, blank is 4.
+.pio\libdeps\esp32doit-devkit-v1\Unity\README.md, code is 146, comment is 1, blank is 85.
+.pio\libdeps\esp32doit-devkit-v1\Unity\src\meson.build, code is 15, comment is 0, blank is 2.
+.pio\libdeps\esp32doit-devkit-v1\Unity\src\unity.c, code is 2078, comment is 172, blank is 237.
+.pio\libdeps\esp32doit-devkit-v1\Unity\src\unity.h, code is 533, comment is 113, blank is 51.
+.pio\libdeps\esp32doit-devkit-v1\Unity\src\unity_internals.h, code is 907, comment is 119, blank is 143.
+.pio\libdeps\esp32doit-devkit-v1\Unity\unityConfig.cmake, code is 1, comment is 0, blank is 0.
+include\can_tx.h, code is 117, comment is 6, blank is 16.
+include\define.h, code is 29, comment is 21, blank is 9.
+include\lut.h, code is 26, comment is 22, blank is 11.
+include\packet.hpp, code is 38, comment is 5, blank is 10.
+include\README, code is 11, comment is 1, blank is 5.
+include\sus_pot.h, code is 15, comment is 1, blank is 6.
+include\wheel_speed.h, code is 29, comment is 20, blank is 14.
+include\wheel_temp.h, code is 31, comment is 8, blank is 7.
+lib\README, code is 37, comment is 2, blank is 9.
+platformio.ini, code is 8, comment is 9, blank is 1.
+src\lut.cpp, code is 55, comment is 14, blank is 14.
+src\main.cpp, code is 86, comment is 3, blank is 13.
+src\sus_pot.cpp, code is 12, comment is 2, blank is 4.
+src\wheel_speed.cpp, code is 60, comment is 9, blank is 15.
+src\wheel_temp.cpp, code is 56, comment is 13, blank is 7.
+test\README, code is 8, comment is 1, blank is 3.
+===============================================================================

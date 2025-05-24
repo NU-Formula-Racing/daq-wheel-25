@@ -29,7 +29,9 @@ enum HWPin : uint8_t {
     FB_SETTING = GPIO_NUM_34,
     FB_INDICATOR = GPIO_NUM_35,
     LR_SETTING = GPIO_NUM_32,
-    LR_INDICATOR = GPIO_NUM_33
+    LR_INDICATOR = GPIO_NUM_33,
+    TEMP_TX = GPIO_NUM_18,
+    TEMP_RX = GPIO_NUM_5,
 };
 
 // Potentiometer Constants
