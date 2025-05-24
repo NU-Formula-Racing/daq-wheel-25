@@ -1,13 +1,14 @@
 #include <Arduino.h>
-
+#include <HardwareSerial.h>
 #include "can_tx.h"
 #include "define.h"
 #include "sus_pot.h"
 #include "wheel_speed.h"
+#include "wheel_temp.h"
 
 CANTX can;
+HardwareSerial tempSerial(1); // Temp board serial
 
-// Create an instance of WheelSpeed.
 WheelSpeed wheelSpeed{
     HWPin::WHEEL_SPEED_PIN,
     TEETH_PER_REVOLUTION,
@@ -18,7 +19,12 @@ SusPot susPot{
     10000,
     SUS_LUT};
 
-void setup() {
+WheelTemp wheelTemp{
+    tempSerial};
+
+void setup()
+{
+    tempSerial.begin(115200, SERIAL_8N1, RXD1, TXD1); // Temp board recieving serial lines
     Serial.begin(115200);
     // turn on the power indicator
     Serial.println("Initializing Power LED!");
@@ -28,19 +34,32 @@ void setup() {
     Serial.println("Initializing Wheel Speed!");
     wheelSpeed.initalize();
     susPot.initialize();
+
     Serial.println("Initializing CAN!");
     can.initialize();
 }
 
-void loop() {
-    // float currentDisplacement = susPot.getDisplacement();
-    // can.displacementSignal = currentDisplacement;
-    // Update the wheel speed calculations.;
+void loop()
+{
     float currentRpm = wheelSpeed.getRPM();
     can.wheelSpeedSignal = currentRpm;
+
     float currentDisplacement = susPot.getDisplacement();
     can.displacementSignal = currentDisplacement;
-    can.loadSignal = 0;
 
+    std::array<float, 8> temps = wheelTemp.getTemps();
+    switch (can.position)
+    {
+    case BrokerPosition::BP_FL
+        break;
+    case BrokerPosition::BP_FR:
+        break;
+    case BrokerPosition::BP_BL:
+        break;
+    case BrokerPosition::BP_BR:
+        break;
+    }
+
+    can.loadSignal = 0;
     can.tick();
 }
