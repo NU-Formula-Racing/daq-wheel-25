@@ -6,6 +6,10 @@
 #include "wheel_speed.h"
 #include "wheel_temp.h"
 
+//Temp UART Pins
+#define RXD1 18
+#define TXD1 5
+
 CANTX can;
 HardwareSerial tempSerial(1); // Temp board serial
 
@@ -50,7 +54,7 @@ void loop()
     std::array<float, 8> temps = wheelTemp.getTemps();
     switch (can.position)
     {
-    case BrokerPosition::BP_FL
+    case BrokerPosition::BP_FL:
         break;
     case BrokerPosition::BP_FR:
         break;

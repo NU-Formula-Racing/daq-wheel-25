@@ -2,6 +2,7 @@
 #include <memory>
 #include <iostream>
 #include <vector>
+#include <HardwareSerial.h>
 
 #include "thermopile.hpp"
 #include "define.hpp"
@@ -11,46 +12,17 @@
 #define ADC_CONST 3.3 / 4096;
 
 std::array<Thermopile, NUM_SENSORS> g_sensors;
+HardwareSerial tempSerial(1);
 
-// struct Message {
-//   std::vector<float> temps;
-//   uint64_t checksum;
-
-//   Message(const std::vector<float>& temp_vector, uint64_t checksum)
-//       : type(type), temps(temp_vector), checksum(checksum) {}
-// };
-
-// uint16_t calculate_checksum(std::vector<float> temp_readings) {
-//   uint16_t checksum = 0;
-
-//   for (size_t i = 0; i < temp_readings.size(); ++i) {
-//       checksum ^= static_cast<int16_t>(temp_readings[i]);  // XOR each temperature reading
-//   }
-
-//   return checksum;
-// }
-
-// void sendMessage(const Message& message) {
-//   // Start by sending the message type
-//   Serial.print(static_cast<uint8_t>(message.type));  // Convert enum to its underlying integer value
-  
-//   // Send temperatures (each float as a string)
-//   for (size_t i = 0; i < message.temps.size(); ++i) {
-//       Serial.print(message.temps[i], 2);  // Send temperature with 2 decimal places
-//       if (i < message.temps.size() - 1) {
-//           Serial.print(",");  // Separate values by commas
-//       }
-//   }
-
-//   // Send the checksum
-//   Serial.print(",");
-//   Serial.println(message.checksum);
-// }
-
+const int8_t RXD1 = 0;
+const int8_t TXD1 = 0;
 
 
 void setup() {
+    
+    tempSerial.begin(115200, SERIAL_8N1, RXD1, TXD1);
     Serial.begin(115200);
+    
 
     ThermopileConfig config = {
         .thermistorBeta = 3960,
@@ -85,9 +57,9 @@ void loop() {
     // averageThemistorValue /= NUM_SENSORS;
     // Serial.print(" | ");
     // Serial.print(averageThemistorValue);
-    Serial.print("\n");
+    // Serial.print("\n");
     
     Packet packet = Packet::makePacket(currentTemps);
-    Serial.write((const uint8_t *)(&packet), sizeof(packet));
+    tempSerial.write((const uint8_t *)(&packet), sizeof(packet));
     delay(100);
 }
