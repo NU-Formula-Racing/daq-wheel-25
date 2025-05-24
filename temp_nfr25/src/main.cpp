@@ -75,10 +75,10 @@ void setup() {
 
 void loop() {
     // float averageThemistorValue = 0;
-    std::vector<float> current_temps;
+    std::array<float, NUM_TEMPS> currentTemps;
     for (int i = 0; i < NUM_SENSORS; i++) {
         Thermopile thermopile = g_sensors[i];
-        current_temps.push_back(thermopile.getObjectTemperature());
+        currentTemps[i] = thermopile.getObjectTemperature();
         //Serial.printf("%0.2fC (%0.4fmv) %0.2fC | ", thermopile.getObjectTemperature(), thermopile.getThermopileVoltage() * 1000, thermopile.getAmbientTemperature());
     }
 
@@ -87,7 +87,7 @@ void loop() {
     // Serial.print(averageThemistorValue);
     Serial.print("\n");
     
-    Packet packet = make_packet(currentTemps);
-    Serial.write(reinterpret_cast<const uint8_t*(&packet), sizeof(packet));
+    Packet packet = Packet::makePacket(currentTemps);
+    Serial.write((const uint8_t *)(&packet), sizeof(packet));
     delay(100);
 }
