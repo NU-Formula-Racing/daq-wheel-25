@@ -25,12 +25,11 @@ public:
         memcpy(p.preamble, PREAMBLE.data(), PREAMBLE.size());
         for (std::size_t i = 0; i < NUM_TEMPS; ++i)
             p.temp[i] = temps[i];
-        p.checksum = p.calculateChecksum(temps);
+        p.checksum = Packet::calculateChecksum(temps);
 
         return p;
     }
-
-    std::uint16_t calculateChecksum(const std::array<float, NUM_TEMPS> &temp_readings)
+    static std::uint16_t calculateChecksum(const std::array<float, NUM_TEMPS> &temp_readings)
     {
         uint16_t checksum = 0;
 
