@@ -88,6 +88,6 @@ void loop() {
     Serial.print("\n");
     
     Packet packet = make_packet(currentTemps);
-    Serial.write(reinterpret_cast<const uint8_t*>(&packet), sizeof(packet));
+    Serial.write(reinterpret_cast<const uint8_t*(&packet), sizeof(packet));
     delay(100);
 }
