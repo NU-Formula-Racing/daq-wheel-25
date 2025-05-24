@@ -55,12 +55,44 @@ void loop()
     switch (can.position)
     {
     case BrokerPosition::BP_FL:
+         can.can_bus_daq_wheel_front_left_outer_temps_flo_temperature_0 = temps[0]
+         can.can_bus_daq_wheel_front_left_outer_temps_flo_temperature_1 = temps[1]
+         can.can_bus_daq_wheel_front_left_outer_temps_flo_temperature_2 = temps[2]
+         can.can_bus_daq_wheel_front_left_outer_temps_flo_temperature_3 = temps[3]
+         can.can_bus_daq_wheel_front_left_inner_temps_fli_temperature_4 = temps[4];
+         can.can_bus_daq_wheel_front_left_inner_temps_fli_temperature_5 = temps[5];
+         can.can_bus_daq_wheel_front_left_inner_temps_fli_temperature_6 = temps[6];
+         can.can_bus_daq_wheel_front_left_inner_temps_fli_temperature_7 = temps[7];
         break;
     case BrokerPosition::BP_FR:
+         can.can_bus_daq_wheel_front_right_outer_temps_fro_temperature_0 = temps[0]
+         can.can_bus_daq_wheel_front_right_outer_temps_fro_temperature_1 = temps[1]
+         can.can_bus_daq_wheel_front_right_outer_temps_fro_temperature_2 = temps[2]
+         can.can_bus_daq_wheel_front_right_outer_temps_fro_temperature_3 = temps[3]
+         can.can_bus_daq_wheel_front_right_inner_temps_fri_temperature_4 = temps[4];
+         can.can_bus_daq_wheel_front_right_inner_temps_fri_temperature_5 = temps[5];
+         can.can_bus_daq_wheel_front_right_inner_temps_fri_temperature_6 = temps[6];
+         can.can_bus_daq_wheel_front_right_inner_temps_fri_temperature_7 = temps[7];
         break;
     case BrokerPosition::BP_BL:
+         can.can_bus_daq_wheel_back_left_outer_temps_blo_temperature_0 = temps[0]
+         can.can_bus_daq_wheel_back_left_outer_temps_blo_temperature_1 = temps[1]
+         can.can_bus_daq_wheel_back_left_outer_temps_blo_temperature_2 = temps[2]
+         can.can_bus_daq_wheel_back_left_outer_temps_blo_temperature_3 = temps[3]
+         can.can_bus_daq_wheel_back_left_inner_temps_bli_temperature_4 = temps[4];
+         can.can_bus_daq_wheel_back_left_inner_temps_bli_temperature_5 = temps[5];
+         can.can_bus_daq_wheel_back_left_inner_temps_bli_temperature_6 = temps[6];
+         can.can_bus_daq_wheel_back_left_inner_temps_bli_temperature_7 = temps[7];
         break;
-    case BrokerPosition::BP_BR:
+    case BrokerPosition::BP_BR;
+         can.can_bus_daq_wheel_back_right_outer_temps_bro_temperature_0 = temps[0]
+         can.can_bus_daq_wheel_back_right_outer_temps_bro_temperature_1 = temps[1]
+         can.can_bus_daq_wheel_back_right_outer_temps_bro_temperature_2 = temps[2]
+         can.can_bus_daq_wheel_back_right_outer_temps_bro_temperature_3 = temps[3]
+         can.can_bus_daq_wheel_back_right_inner_temps_bri_temperature_4 = temps[4];
+         can.can_bus_daq_wheel_back_right_inner_temps_bri_temperature_5 = temps[5];
+         can.can_bus_daq_wheel_back_right_inner_temps_bri_temperature_6 = temps[6];
+         can.can_bus_daq_wheel_back_right_inner_temps_bri_temperature_7 = temps[7];
         break;
     }
 
