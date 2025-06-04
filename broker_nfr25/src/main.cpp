@@ -6,6 +6,7 @@
 #include "sus_pot.h"
 #include "wheel_speed.h"
 #include "wheel_temp.h"
+#include "strain_gauge.h"
 
 CANTX can;
 HardwareSerial tempSerial(1);  // Temp board serial
@@ -19,6 +20,10 @@ SusPot susPot{
     HWPin::POT_PIN,
     10000,
     SUS_LUT};
+
+StrainGauge strainGauge {
+    HWPin::STRAIN
+};
 
 WheelTemp wheelTemp{
     tempSerial};
@@ -34,6 +39,7 @@ void setup() {
     Serial.println("Initializing Wheel Speed!");
     wheelSpeed.initalize();
     susPot.initialize();
+    strainGauge.initialize();
 
     Serial.println("Initializing CAN!");
     can.initialize();
@@ -45,6 +51,9 @@ void loop() {
 
     float currentDisplacement = susPot.getDisplacement();
     can.displacementSignal = currentDisplacement;
+
+    float strainSignal = strainGauge.getStrainSignal();
+    can.loadSignal = strainSignal;
 
     std::array<float, 8> temps = wheelTemp.getTemps();
     switch (can.position) {

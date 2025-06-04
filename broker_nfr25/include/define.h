@@ -32,6 +32,7 @@ enum HWPin : uint8_t {
     LR_INDICATOR = GPIO_NUM_33,
     TEMP_TX = GPIO_NUM_18,
     TEMP_RX = GPIO_NUM_5,
+    STRAIN = GPIO_NUM_27,
 };
 
 // Potentiometer Constants
@@ -42,7 +43,7 @@ enum HWPin : uint8_t {
 static NumericLUT SUS_LUT = {
     {
         {0, 0},    // when we read 0 volts, we are at 0 cm
-        {3.3, 25},  // when we read 3.3 volts, we are at 25 cm
+        {3.3, 75},  // when we read 3.3 volts, we are at 25 cm
     },
     InterpolationType::IT_LERP  // linear interpolation
 };

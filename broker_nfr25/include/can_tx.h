@@ -20,9 +20,9 @@ class CANTX {
     VirtualTimerGroup timerGroup;
     BrokerPosition position;
 
-    MakeSignedCANSignal(float, 0, 16, 1.0, 0.0) wheelSpeedSignal;
-    MakeSignedCANSignal(float, 16, 16, 1.0, 0.0) displacementSignal;
-    MakeSignedCANSignal(float, 32, 16, 1.0, 0.0) loadSignal;
+    MakeSignedCANSignal(float, 0, 16, 0.1, 0.0) wheelSpeedSignal;
+    MakeSignedCANSignal(float, 16, 16, 0.01, 0.0) displacementSignal;
+    MakeSignedCANSignal(float, 32, 16, 0.001, 0.0) loadSignal;
 
     MakeSignedCANSignal(float, 0, 16, 0.01, 0.0) daq_wheel_back_left_inner_temps_bli_temperature_4{};
     MakeSignedCANSignal(float, 16, 16, 0.01, 0.0) daq_wheel_back_left_inner_temps_bli_temperature_5{};
