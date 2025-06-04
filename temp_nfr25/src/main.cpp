@@ -1,73 +1,57 @@
 #include <Arduino.h>
+#include <memory>
 #include <iostream>
-#include <bitset>
-/*********
-  Rui Santos & Sara Santos - Random Nerd Tutorials
-  Complete instructions at https://RandomNerdTutorials.com/esp32-uart-communication-serial-arduino/
-  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files.
-  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*********/
-// sender code
-// Define TX and RX pins for UART (change if needed)
-#define TXD1 19
-#define RXD1 21
+#include <vector>
+#include <HardwareSerial.h>
 
-// Use Serial1 for UART communication
-HardwareSerial mySerial(1);
+#include "thermopile.hpp"
+#include "define.hpp"
+#include "packet.hpp"
+// #include "message.hpp"
 
-int counter = 0;
+#define ADC_CONST 3.3 / 4096;
+
+std::array<Thermopile, NUM_SENSORS> g_sensors;
+HardwareSerial tempSerial(1);
+
 
 void setup() {
-  //Serial.begin(115200);
-  mySerial.begin(9600, SERIAL_8N1, RXD1, TXD1);  // UART setup
-  
-  Serial.println("ESP32 UART Transmitter");
-  
+    
+    tempSerial.begin(115200, SERIAL_8N1, HWPin::TEMP_RX, HWPin::TEMP_TX);
+    Serial.begin(115200);
+    
+
+    ThermopileConfig config = {
+        .thermistorBeta = 3960,
+        .thermistorVin = 3.3,
+        .thermistorR2 = 10000,
+        .thermistorRoomTempResistance = 100000,
+        .thermopileSignalOffset = 0.55,
+        .thermopileSignalGain = 246,
+        .calibrationConstant = (1.6 * 1.6e-12),
+        .thermopileLut = std::make_shared<NumericLUT>(__thermopileLUT)
+    };
+
+    // create the sensors
+    for (int i = 0; i < NUM_SENSORS; i++) {
+        new (&g_sensors[i]) Thermopile(
+            getThermopilePin(i),
+            getThermistorPin(i),
+            config
+        );
+    }
 }
-
-String convertToBinary(int n) {
-    String binaryString = "";
-
-    if (n == 0) {
-        return "00000000";  // Special case for 0
-    }
-
-    while (n > 0) {
-        int remainder = n % 2;
-        binaryString = String(remainder) + binaryString;  // Prepend to the string
-        n /= 2;
-    }
-
-    // Pad with leading zeros to make it 8 digits
-    while (binaryString.length() < 8) {
-        binaryString = "0" + binaryString;
-    }
-
-    return binaryString;
-}
-
-
-
 
 void loop() {
-  
-String tempArray[8][4];
-for (int j = 0; j < 8; j++) {
-  for (int i = 0; i < 4; i++) {
-        String binary = convertToBinary(random(0,256));
-        tempArray[j][i] = binary;  // Generate a random number between 0 and 255
+    // float averageThemistorValue = 0;
+    std::array<float, NUM_TEMPS> currentTemps;
+    for (int i = 0; i < NUM_SENSORS; i++) {
+        Thermopile thermopile = g_sensors[i];
+        currentTemps[i] = thermopile.getObjectTemperature();
+        Serial.printf("%0.2fC (%0.4fmv) %0.2fC | ", thermopile.getObjectTemperature(), thermopile.getThermopileVoltage() * 1000, thermopile.getAmbientTemperature());
     }
-}
-   
-  for (int j = 0; j < 8; j++) {
-    for (int i = 0; i < 4; i++) {
-      mySerial.println(tempArray[j][i]);
-      mySerial.println(",");
-    }
-    mySerial.println("----");
-  }
-
-  mySerial.println("---END OF TEMP BLOCK---");
-  
-  delay(1000); 
+    
+    Packet packet = Packet::makePacket(currentTemps);
+    tempSerial.write((const uint8_t *)(&packet), sizeof(packet));
+    delay(10);
 }
