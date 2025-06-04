@@ -22,7 +22,9 @@ SusPot susPot{
     SUS_LUT};
 
 StrainGauge strainGauge {
-    HWPin::STRAIN
+    HWPin::STRAIN,
+    5.94, // gain
+    3.3/2 // offset
 };
 
 WheelTemp wheelTemp{
